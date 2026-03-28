@@ -3,12 +3,15 @@ import { createServer } from "http";
 import { Server } from "socket.io";
 import cors from "cors";
 import { config } from "dotenv";
-
 config();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.send("Serverul merge ✅");
+});
 
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
